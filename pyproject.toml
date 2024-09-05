@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "devpro-s3-storages"
-version = "0.1.0"
+version = "0.2.0"
 description = "Django Project to handle Static and Upload Files on s3 the right way"
 authors = ["renzo <renzon@gmail.com>"]
 license = "MIT"
