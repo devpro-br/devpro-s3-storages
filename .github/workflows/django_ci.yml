@@ -30,7 +30,7 @@ jobs:
           poetry install --sync
 
       - name: Run Linter
-        run: poetry rruff check ../devpro_s3_storages/ .
+        run: poetry ruff check ../devpro_s3_storages/ .
 
       - name: Run backend Tests
         run: poetry run pytest --cache-clear
