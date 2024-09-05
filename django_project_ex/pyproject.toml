@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "django-project-ex"
+version = "0.1.0"
+description = "Django example using devpro-s3-storages"
+authors = ["renzo <renzon@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.1"
+pytest = "^8.3.2"
+pytest-django = "^4.9.0"
+devpro-s3-storages = {path = ".."}
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "example.settings"
+python_files = ["test*.py", "*test.py", "testing/python/*.py"]
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

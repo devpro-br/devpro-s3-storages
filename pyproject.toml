@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "devpro-s3-storages"
+version = "0.1.0"
+description = "Django Project to handle Static and Upload Files on s3 the right way"
+authors = ["renzo <renzon@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+pytest-django = "^4.8.0"
+flake8 = "^7.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.1"
+django-storages = {extras = ["s3"], version = "^1.14.4"}
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
