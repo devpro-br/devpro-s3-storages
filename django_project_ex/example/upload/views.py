@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from example.upload.models import PrivateFile, PublicFile, InvalidFile
+from example.upload.models import InvalidFile, PrivateFile, PublicFile
 
 
 # Create your views here.

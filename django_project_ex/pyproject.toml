@@ -13,11 +13,31 @@ django = "^5.1.1"
 pytest = "^8.3.2"
 pytest-django = "^4.9.0"
 devpro-s3-storages = {path = ".."}
+ruff = "^0.6.3"
+pytest-cov = "^5.0.0"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "example.settings"
 python_files = ["test*.py", "*test.py", "testing/python/*.py"]
 
+[tool.ruff]
+line-length = 120
+preview = true
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+# overlap with the use of a formatter, like Black, but we can override this behavior by
+# explicitly adding the rule.
+select = ["W293", "E305", "E501", "I"]
+extend-select = []
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120
 
 
 [build-system]

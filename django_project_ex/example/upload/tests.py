@@ -2,11 +2,10 @@ from unittest.mock import Mock
 
 import pytest
 from devpro_s3_storages.handlers import FileConfigurationError, S3FileStorage
-
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 
-from example.upload.models import PrivateFile, PublicFile, InvalidFile
+from example.upload.models import InvalidFile, PrivateFile, PublicFile
 
 
 def test_valid_private_file(db, client):
@@ -66,9 +65,11 @@ def test_private_acl():
 def test_signed_private_url():
     location = 'location'
     storage = S3FileStorage(location=location)
-    signed_url = 'https://your-bucket-name.s3.amazonaws.com/path/to/your-object.txt?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&Expires=1611976825&Signature=abc1234xyz5678exampleSignature'
+    signed_url = (
+        'https://your-bucket-name.s3.amazonaws.com/path/to/your-object.txt'
+        '?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&Expires=1611976825&Signature=abc1234xyz5678exampleSignature')
     storage._s3_url = Mock(return_value=signed_url)
-    url = storage.url(f'/private/file')
+    url = storage.url('/private/file')
     assert url == signed_url
 
 
@@ -76,7 +77,10 @@ def test_unsigned_public_url():
     location = 'location'
     storage = S3FileStorage(location=location)
     unsigned_url = 'https://your-bucket-name.s3.amazonaws.com/path/to/your-object.txt'
-    signed_url = f'{unsigned_url}?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&Expires=1611976825&Signature=abc1234xyz5678exampleSignature'
+    signed_url = (
+        f'{unsigned_url}'
+        f'?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&Expires=1611976825&Signature=abc1234xyz5678exampleSignature'
+    )
     storage._s3_url = Mock(return_value=signed_url)
-    url = storage.url(f'public/file')
+    url = storage.url('public/file')
     assert url == unsigned_url
